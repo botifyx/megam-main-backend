@@ -23,6 +23,14 @@ app.use('/api/auth', authRoutes);
 const contentRoutes = require('./routes/contentRoutes');
 app.use('/api/content', contentRoutes);
 
+const blogRoutes = require('./routes/blogRoutes');
+app.use('/api/blogs', blogRoutes);
+
+// Serve static files from the uploads directory
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'Backend is running' });
 });
