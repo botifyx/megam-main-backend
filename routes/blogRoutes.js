@@ -59,8 +59,8 @@ router.get('/:slug', async (req, res) => {
 
 // --- CREATE Blog ---
 router.post('/', upload.single('image'), async (req, res) => {
-    const { title, content, excerpt, author, category } = req.body;
-    const imageUrl = req.file ? `/uploads/blogs/${req.file.filename}` : null;
+    const { title, content, excerpt, author, category, image_url } = req.body;
+    const imageUrl = req.file ? `/uploads/blogs/${req.file.filename}` : (image_url || null);
     const slug = slugify(title, { lower: true, strict: true }) + '-' + Date.now();
 
     try {
